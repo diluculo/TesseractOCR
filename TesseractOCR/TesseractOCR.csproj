@@ -4,7 +4,7 @@
 		<PackageId>TesseractOCR</PackageId>
 		<Authors>Charles Weld &amp; Kees van Spelde</Authors>
 		<Product>Tesseract</Product>
-		<Description>Tesseract 5.5.0 adds a new neural net (LSTM) based OCR engine which is focused on line recognition, but also still supports the legacy Tesseract OCR engine of Tesseract 3 
+		<Description>Tesseract 5.5.1 adds a new neural net (LSTM) based OCR engine which is focused on line recognition, but also still supports the legacy Tesseract OCR engine of Tesseract 3 
 which works by recognizing character patterns. Compatibility with Tesseract 3 is enabled by using the Legacy OCR Engine mode (--oem 0). It also needs traineddata files 
 which support the legacy engine, for example those from the tessdata repository.</Description>
 		<Copyright>Copyright 2012-2021 Charles Weld - Copyright 2021-2023 Kees van Spelde</Copyright>
@@ -15,7 +15,7 @@ which support the legacy engine, for example those from the tessdata repository.
 		<PackageTags>Tesseract OCR text readable PDF</PackageTags>
 		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
 		<SignAssembly>false</SignAssembly>
-		<TargetFrameworks>netstandard21;net461;net48;net6.0;net8.0;net9.0</TargetFrameworks>
+		<TargetFrameworks>netstandard20;netstandard21</TargetFrameworks>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<FileVersion>5.5.1.0</FileVersion>
 		<AssemblyVersion>5.5.1.0</AssemblyVersion>
@@ -50,7 +50,7 @@ which support the legacy engine, for example those from the tessdata repository.
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.4" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.3" />
 		<PackageReference Include="System.Reflection.Emit" Version="4.7.0" />
 	</ItemGroup>
 
