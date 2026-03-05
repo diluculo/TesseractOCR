@@ -57,8 +57,11 @@ namespace TesseractOCR.InteropDotNet
             ImplementMethods(typeBuilder, methods);
             ImplementConstructor(typeBuilder, methods);
 
+#if (NETSTANDARD2_0)
+            var implementationType = typeBuilder.CreateTypeInfo();
+#else
             var implementationType = typeBuilder.CreateType();
-
+#endif
             return (T)Activator.CreateInstance(implementationType, LibraryLoader.Instance);
         }
         #endregion
@@ -140,14 +143,12 @@ namespace TesseractOCR.InteropDotNet
 
             // Invoke
             var parameters = GetParameterInfoArray(method.Info);
-            var methodBuilder =
-                DefineMethod(delegateBuilder, "Invoke", methodAttributes, method.ReturnType, parameters);
+            var methodBuilder = DefineMethod(delegateBuilder, "Invoke", methodAttributes, method.ReturnType, parameters);
             methodBuilder.SetImplementationFlags(MethodImplAttributes.CodeTypeMask);
 
             // BeginInvoke
             parameters = GetParameterInfoArray(method.Info, InfoArrayMode.BeginInvoke);
-            methodBuilder = DefineMethod(delegateBuilder, "BeginInvoke", methodAttributes, typeof(IAsyncResult),
-                parameters);
+            methodBuilder = DefineMethod(delegateBuilder, "BeginInvoke", methodAttributes, typeof(IAsyncResult), parameters);
             methodBuilder.SetImplementationFlags(MethodImplAttributes.CodeTypeMask);
 
             // EndInvoke
@@ -156,7 +157,11 @@ namespace TesseractOCR.InteropDotNet
             methodBuilder.SetImplementationFlags(MethodImplAttributes.CodeTypeMask);
 
             // Create type
+#if (NETSTANDARD2_0)
+            return delegateBuilder.CreateTypeInfo();
+#else
             return delegateBuilder.CreateType();
+#endif
         }
         #endregion
 
